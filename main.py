@@ -6,13 +6,27 @@ from game import logic, battle, results
 with open('battles_results.txt', 'w+') as results_file:
     results_file.write('\n')
 
+print('\n===========================================')
+print('==== ⚔️  WELCOME TO THE POKEMON GAME ⚔️  ====')
+print('===========================================\n')
+
 battles = 1
 while(True):
-    print('\n============================')
-    print('==== POKEMON BATTLE #',battles,'====')
-    print('============================')
+    print('----------------------------')   
+    print('---- Pokemon Battle #',battles,'----')
+    print('----------------------------')
 
-    game_type = input('\nWhat will be the type of the game? Randomly generated pokemons for both (enter "random") or player choice-based pokemon (enter "choice") ')
+    game_type_text = (
+        "\nType of games available:\n"
+        "- 'random': A random Pokemon will be assigned to you and your opponent.\n"
+        "- 'choice': You will choose your Pokemon from a list of randomly generated options.\n"
+        "\nEnter your preferred game type: "
+    )
+
+    game_type = input(game_type_text).strip().lower()
+    if game_type not in ['random', 'choice']:
+        print("\nInvalid game type. Defaulting to 'random'.")
+        game_type = 'random'
 
     player_pokemon, opponent_pokemon = logic.assign_pokemons(game_type)
 
