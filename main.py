@@ -30,11 +30,14 @@ while(True):
 
     player_pokemon, opponent_pokemon = logic.assign_pokemons(game_type)
 
-    print(f"\nThe player's pokemon name is: {player_pokemon['name']} 🦖")
-    print(f"The opponent's pokemon name is: {opponent_pokemon['name']} 🦕")
+    print(f"\n🦖 Your Pokemon is: {player_pokemon['name'].title()} (ID: {player_pokemon['id']})")
+    print(f"🦕 Opponent's Pokemon is: {opponent_pokemon['name'].title()} (ID: {opponent_pokemon['id']})")
 
     # Define the number of rounds to be played
-    number_rounds = int(input('\nHow many number of rounds? (between 3-7, an even number can result in a draw): '))
+    number_rounds = int(input('\nHow many number of rounds? (between 2-5, an even number can result in a draw): '))
+    if number_rounds not in range(2,5):
+        print("\nInvalid number of rounds. 👋🏼 Exiting the game.")
+        exit()
 
     # Pokemons go to battle for a specific number of rounds
     # Results are returned and set to '_score' variables

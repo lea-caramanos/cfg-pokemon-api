@@ -57,8 +57,9 @@ def pokemon_battle(p_pokemon, o_pokemon, rounds):
 
   # While loop to continue playing rounds until chosen number reached
   while(rounds_played < rounds):
-    print('\n============================')
-    print(f'========== ROUND {rounds_played + 1} =========')
+    print('\n...............')
+    print(f'... ROUND {rounds_played + 1} ...')
+    print('...............\n')
     # Retrieve chosen stat (if 'exit', the game stops)
     stat = stat_input()
 
