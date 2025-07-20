@@ -8,11 +8,11 @@ with open('battles_results.txt', 'w+') as results_file:
 
 print('\n===========================================')
 print('==== ⚔️  WELCOME TO THE POKEMON GAME ⚔️  ====')
-print('===========================================\n')
+print('===========================================')
 
 battles = 1
 while(True):
-    print('----------------------------')   
+    print('\n----------------------------')
     print('---- Pokemon Battle #',battles,'----')
     print('----------------------------')
 
@@ -35,7 +35,7 @@ while(True):
 
     # Define the number of rounds to be played
     number_rounds = int(input('\nHow many number of rounds? (between 2-5, an even number can result in a draw): '))
-    if number_rounds not in range(2,5):
+    if number_rounds not in range(2,6):
         print("\nInvalid number of rounds. 👋🏼 Exiting the game.")
         exit()
 
@@ -48,7 +48,7 @@ while(True):
 
     # Player chooses whether to play again
     print('\n============================')
-    play_again = input('\nDo you want to play another game? (y/n) ')
+    play_again = input('\nDo you want to play another game? (y/n) ').strip().lower()
 
     if play_again == 'y':
         battles += 1
