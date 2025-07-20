@@ -49,11 +49,15 @@ while(True):
     # Player chooses whether to play again
     print('\n============================')
     play_again = input('\nDo you want to play another game? (y/n) ').strip().lower()
-
-    if play_again == 'y':
+    if play_again not in ['y', 'n']:
+        print("\nInvalid input. 👋🏼 Exiting the game.")
+        exit()
+    elif play_again == 'y':
         battles += 1
     # If no more battles, results are stored in file for the game and displayed
     elif play_again == 'n':
+        print("\nFeel free to open and have a look at the 'battles_results.txt' file with the results.")
+
         with open('battles_results.txt', 'r') as results_file:
             battles_outcome = results_file.read()
 
