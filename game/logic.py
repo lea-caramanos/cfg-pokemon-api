@@ -11,7 +11,7 @@ def choose_pokemon(pokemons):
   for key in pokemons:
     print('> Pokemon option #',index,'= ID:',key['id'],'- NAME:',key['name'])
     index+=1
-  choice = int(input("\nWhat is your choice (type the pokemon's id)? "))
+  choice = int(input("\nWhat is your choice (type the pokemon's id)? ").strip())
 
   # For loop to save the chosen pokemon using its ID, compare each option to the choice ID imputed above
   for x in pokemons:
@@ -50,7 +50,7 @@ def assign_pokemons(type_game):
   if type_game == 'random':
     p_pokemon = get_pokemon(1)
   elif type_game == 'choice':
-    number_options = int(input('How many pokemons do you want to choose from (between 2-5)? '))
+    number_options = int(input('How many pokemons do you want to choose from (between 2-5)? ').strip())
     p_pokemon = get_pokemon(number_options)
 
   # Randomly generate opponent's pokemon and preventing pokemons being the same

@@ -6,21 +6,38 @@ from game import logic, battle, results
 with open('battles_results.txt', 'w+') as results_file:
     results_file.write('\n')
 
+print('\n===========================================')
+print('==== ⚔️  WELCOME TO THE POKEMON GAME ⚔️  ====')
+print('===========================================')
+
 battles = 1
 while(True):
-    print('\n============================')
-    print('==== POKEMON BATTLE #',battles,'====')
-    print('============================')
+    print('\n----------------------------')
+    print('---- Pokemon Battle #',battles,'----')
+    print('----------------------------')
 
-    game_type = input('\nWhat will be the type of the game? Randomly generated pokemons for both (enter "random") or player choice-based pokemon (enter "choice") ')
+    game_type_text = (
+        "\nType of games available:\n"
+        "- 'random': A random Pokemon will be assigned to you and your opponent.\n"
+        "- 'choice': You will choose your Pokemon from a list of randomly generated options.\n"
+        "\nEnter your preferred game type: "
+    )
+
+    game_type = input(game_type_text).strip().lower()
+    if game_type not in ['random', 'choice']:
+        print("\nInvalid game type. Defaulting to 'random'.")
+        game_type = 'random'
 
     player_pokemon, opponent_pokemon = logic.assign_pokemons(game_type)
 
-    print(f"\nThe player's pokemon name is: {player_pokemon['name']} 🦖")
-    print(f"The opponent's pokemon name is: {opponent_pokemon['name']} 🦕")
+    print(f"\n🦖 Your Pokemon is: {player_pokemon['name'].title()} (ID: {player_pokemon['id']})")
+    print(f"🦕 Opponent's Pokemon is: {opponent_pokemon['name'].title()} (ID: {opponent_pokemon['id']})")
 
     # Define the number of rounds to be played
-    number_rounds = int(input('\nHow many number of rounds? (between 3-7, an even number can result in a draw): '))
+    number_rounds = int(input('\nHow many number of rounds? (between 2-5, an even number can result in a draw): '))
+    if number_rounds not in range(2,6):
+        print("\nInvalid number of rounds. 👋🏼 Exiting the game.")
+        exit()
 
     # Pokemons go to battle for a specific number of rounds
     # Results are returned and set to '_score' variables
@@ -31,12 +48,16 @@ while(True):
 
     # Player chooses whether to play again
     print('\n============================')
-    play_again = input('\nDo you want to play another game? (y/n) ')
-
-    if play_again == 'y':
+    play_again = input('\nDo you want to play another game? (y/n) ').strip().lower()
+    if play_again not in ['y', 'n']:
+        print("\nInvalid input. 👋🏼 Exiting the game.")
+        exit()
+    elif play_again == 'y':
         battles += 1
     # If no more battles, results are stored in file for the game and displayed
     elif play_again == 'n':
+        print("\nFeel free to open and have a look at the 'battles_results.txt' file with the results.")
+
         with open('battles_results.txt', 'r') as results_file:
             battles_outcome = results_file.read()
 
